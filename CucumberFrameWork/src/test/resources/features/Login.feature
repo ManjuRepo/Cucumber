@@ -16,9 +16,9 @@
 #""
 ## (Comments)
 #Sample Feature Definition Template
-@tagtagFirstFeatureSenario
+@tagFirstFeatureSenario
 Feature: Feature to test login functionalaity
-@tagFirstTestSenario
+@FirstTestSenario
   Scenario: check login is succesfull with valid cedentials
     Given user is on login page
     When user enters username and password
