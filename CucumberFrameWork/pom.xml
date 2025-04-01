@@ -5,7 +5,12 @@
 	<groupId>CucumberFrameWork</groupId>
 	<artifactId>CucumberFrameWork</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-
+	 <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>        
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+    
 	<dependencies>
 		<!-- Selenium WebDriver dependency -->
 		<dependency>
@@ -88,5 +93,45 @@
 			<version>7.20.1</version>
 			<scope>test</scope>
 		</dependency>
+		<!--
+		https://mvnrepository.com/artifact/net.masterthought/maven-cucumber-reporting -->
+		<dependency>
+			<groupId>net.masterthought</groupId>
+			<artifactId>maven-cucumber-reporting</artifactId>
+			<version>5.8.5</version>
+		</dependency>
 	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.22.0</version>
+				<configuration>
+					<testFailureIgnore>true</testFailureIgnore>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>net.masterthought</groupId>
+				<artifactId>maven-cucumber-reporting</artifactId>
+				<version>2.8.0</version>
+				<executions>
+					<execution>
+						<id>execution</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<projectName>CucumberFrameWork</projectName>
+							<outputDirectory>
+								${project.build.directory}/cucumber-report-html</outputDirectory>
+							<cucumberOutput>
+								${project.build.directory}/cucumber.json</cucumberOutput>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>
